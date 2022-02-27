@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DraweR</title>
+    <link rel="icon" href="icon">
+    <link rel="stylesheet" href="draw.css">
+    <!-- <script src="draw.js"></script> -->
+</head>
+<body onload="set(0)">
+    <span id='span' onmousedown="box()" onmouseup="down()" onmousemove="final(event)"></span>
+    <input id='download' type="image" src="./img/down.png" title='SavE' onclick="save()" >
+    
+    <div title='Change Line Width' class="controll">
+        <input type="range" name="" id="rc" range=20 step=.1 value=7.5 max=20 min=0.4 oninput="change()">
+    </div>
+
+    <img class="time" onclick="time(this.alt)" src="img/undo.png" alt="undo" title="undo">
+    <img class="time2" onclick="time(this.alt)" src="img/redo.png" alt="redo" title="redo">
+
+    <img src="img/playB.png" alt="redo back" onclick="playB(0)" class="playB" title="play undo">
+    <img src="img/playF.png" alt="redo foward" onclick="playF(0)" class="playF" title="Play redo">
+
+    <div class="controll" onclick="bg()">
+        <input title='Light Mood' type="button" name="" id="cc" value='🔅'>
+    </div>
+    
+    <div title='Cleaner' class="controll" onclick="text()">
+        A
+    </div>
+    <button id='span2' title='Double Click' ondblclick="cl()">ClearScreen</button>
+
+    <div title='Change color 🎨' class="controll">
+        <input type="color" name="" id="ic" value='#db910f' oninput="color()">
+    </div>
+    <canvas id="canvas" onmousedown="onn(event)" onmouseup="off()" onmousemove="draw(event); erase2(event)">
+
+        <script src="draw.js"> </script>
+
+    </canvas>
+</body>
+</html>

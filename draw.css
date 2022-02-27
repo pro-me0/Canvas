@@ -1,0 +1,104 @@
+*{
+    transition: ;
+}
+
+body{
+    margin: 0;
+    overflow: hidden;
+    display: block;
+}
+
+canvas{
+    background-color: black;
+    cursor: url('./img/pointer.png'), auto;
+}
+
+div{
+    position: fixed;
+    background-color: rgba(39, 39, 39, 0.295);
+}
+.controll:hover{
+    background-color: rgba(39, 39, 39, 0.61);
+
+}
+
+input{
+    margin: .499em;
+    font-size: 1.499em;
+    cursor: pointer;
+    height: 1.499em;
+    border-width: 0;
+
+}
+/*  */
+#rc{
+    width: 20vw;
+}
+#span2{
+    color: rgb(255, 162, 0);
+}
+#span{
+    visibility: hidden;
+    position: fixed;
+    background-color: rgba(245, 222, 179, 0.233);
+    padding: 1em;
+}
+button{
+    border: 0;
+    cursor: pointer;
+    padding: 1em;
+    color: white;
+    height: fit-content;
+    position: fixed;
+    background-color: rgba(39, 39, 39, 0.295);
+ }
+ #download{
+    background-color: rgba(39, 39, 39, 0.295);
+    position: fixed;
+    color: red;
+    /* top: 0; */
+    margin-top: 0;
+ }
+
+/*  */
+.controll{
+    cursor: pointer;
+    background-color: rgba(255, 0, 0, 0);
+    /*right: 0;*/
+}
+
+
+/*  */
+.controll:nth-of-type(2) > input{
+    background-color: rgba(255, 0, 0, 0);
+    border-width: 0;
+}
+.controll:nth-of-type(3){
+    /* border-width: 0; */
+    font-size: 2em;
+    font-weight: bold;
+    color: rgb(255, 162, 0);
+    padding: .4em;
+}
+
+.time{
+    position: fixed;
+    top: 48vh;
+    color:  white;
+}
+.time2{
+    position: fixed;
+    top: 48vh;
+    right: 0px;
+}
+
+.playB{
+    position: fixed;
+    left:  30vw;
+    width: 3vw;
+}
+.playF{
+    position: fixed;
+    right:  30vw;
+    width: 3vw;
+}
