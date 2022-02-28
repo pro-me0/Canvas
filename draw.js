@@ -333,3 +333,13 @@ text = () => {
     load = prompt("Write Here");
     tt = true;
 }
+
+let chh = (x) => {
+    if(x > 0){
+        setTimeout(() => {
+            bg();
+            console.log('>> bg', x)
+            chh(x = x - 1);
+        }, 300)
+    };
+};
