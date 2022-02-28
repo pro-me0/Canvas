@@ -65,8 +65,12 @@ class liner{
 let onn = (e) => {
      if(tt){
         // line.fillStyle = ic.value;
-        line.font = `${((.09/100) * can.width) + .49 + 'em'} 'Times New Roman', serif`;
-        words.push(new word(load, e.layerX, e.layerY, ic.value));
+        line.font = `${((.09/100) * can.width) + .49 + 'em'} Papyrus`;
+        // words.push(new word(load, e.layerX, e.layerY, ic.value));
+        ray.push(new word(load, e.layerX, e.layerY, ic.value));
+        setTimeout(() => {
+            ray.pop()
+        }, 10)
         tt = false;
     }
 
@@ -122,9 +126,9 @@ function bg(){
     for(let i = 0; i < rayc.length; i++){
             rayc[i].clean();
         }
-    if(cc.value == '🔅'){
+    if(cc.title == 'Light mood'){
         line.clearRect(0, 0, window.innerWidth, window.innerHeight)
-        cc.value = '🔦';
+        cc.src = 'img/dark.png';
     cc.title = 'Dark mood';
         can.style.backgroundColor = 'wheat';
         line.strokeStyle = 'black';
@@ -137,7 +141,7 @@ function bg(){
         rayc[i].clean();
     }
         line.clearRect(0, 0, window.innerWidth, window.innerHeight)
-        cc.value = '🔅';
+        cc.src = 'img/light.png';
         can.style.backgroundColor = 'black';
     cc.title = 'Light mood';
     line.strokeStyle = v;
@@ -164,12 +168,6 @@ three = () => {
         for(let i = 0; i < ray.length; i++){
             ray[i].rct();
         };
-
-        if(words.length != 0){
-            for(let x = 0; x < words.length; x++){
-                words[x].rct()
-            }
-        }
 },
 permit = false, fin = false;
 function erase2(e){
