@@ -65,7 +65,6 @@ class liner{
 let onn = (e) => {
      if(tt){
         // line.fillStyle = ic.value;
-        line.font = `${((.09/100) * can.width) + .49 + 'em'} Papyrus`;
         // words.push(new word(load, e.layerX, e.layerY, ic.value));
         ray.push(new word(load, e.layerX, e.layerY, ic.value));
         setTimeout(() => {
@@ -280,14 +279,16 @@ class word{
         this.x = x;
         this.y = y;
         this.color = c;
+        this.size = rc.value;
     }
     rct = () => {
+        line.font = `${this.size + 'em'} Papyrus`;
         line.fillStyle = this.color;
         line.fillText(this.string, this.x ,this.y);
     }
 };
 
-let words = new Array;
+// let words = new Array;
 
 let time = (load) => {
     let path = {
