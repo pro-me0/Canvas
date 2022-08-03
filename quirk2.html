@@ -1,0 +1,142 @@
+<!doctype html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>animateex</title>
+  <!-- <meta http-equiv="refresh" content="1"> -->
+  <style type="text/css">
+    canvas{
+      background-color: black;
+    }
+      body{
+        margin: 0;
+        overflow: hidden;
+      }
+  </style>
+</head>
+<body onclick="an(event);">
+  <canvas id="canvas">
+    <script>
+      let can = document.getElementById("canvas"),
+      innerw, innerh, px=30;
+      innerw = window.innerWidth;
+      innerh = window.innerHeight;
+
+      can.width = innerw;
+      can.height = innerh;
+
+      let line = can.getContext("2d");
+
+      class point{
+        constructor(x, y){
+          this.ry = Number((Math.random() * 6).toFixed(1));
+          this.rx = Number((Math.random() * 6).toFixed(1));
+          this.x = x;
+          this.y = y;
+        }
+        alter = () => {
+          // this.x += (this.x >= (innerw/2))? this.rate: -this.rate;
+          this.y += this.ry;
+          this.x += this.rx;
+        }
+      }
+
+      let points = new Array, num = Number(prompt("🔢 💎?"));
+
+      for(x = 0; x < num; x++){
+        points.push(new point(Number((Math.random() * innerw).toFixed(1)), Number((Math.random() * innerh).toFixed(1))))
+      }
+
+      class main{
+        constructor(){
+
+        }
+
+        draw = () => {
+          line.strokeStyle=`rgba(100, 190, 200, .04)`;
+          line.fillStyle=`rgba(100, 190, 200, .12)`;
+          line.lineWidth = 1;
+          line.beginPath();
+          for(let i=0;i<points.length;i++){
+            for(let x=0;x<points.length;x++){
+              line.lineTo(points[i].x, points[i].y);
+              line.lineTo(points[x].x, points[x].y);
+            line.fill();
+            }
+          }
+          line.closePath();
+          
+          line.stroke();
+        }
+      }
+
+      let body = new main();
+      // body.draw();
+
+      let update = () => {
+        body.draw()
+        for(let i = 0; i < points.length; i++){
+          points[i].alter();
+        }
+
+        for(let i = 0; i < points.length; i++){
+          if(points[i].x >= innerw-px){
+            points[i].x = innerw - px;
+            points[i].rx = points[i].rx * -1;
+          }
+          if(points[i].x <= px*.5){
+            points[i].x = px*.5;
+            points[i].rx = points[i].rx * -1;
+          }
+
+          if(points[i].y >= innerh-px){
+            points[i].y = innerh-px;
+            points[i].ry = points[i].ry * -1;
+          }
+          if(points[i].y <= px){
+            points[i].y = px
+            points[i].ry = points[i].ry * -1;
+          }
+          // if(points[i].x <= innerw/2){
+          //   points[i].rate = points[i].rate * -1;
+          // }
+
+        }
+/*
+          for(let i = 0; i < points.length; i++){
+            if(points[i].x > innerw-px){
+            points[i].x = innerw - px * .2;
+          }
+          if(points[i].x <= px*.5){
+            points[i].rx = points[i].rx * -1;
+          }
+
+          if(points[i].y >= innerh-px){
+            points[i].ry = points[i].ry * -1;
+          }
+          if(points[i].y <= px){
+            points[i].ry = points[i].ry * -1;
+          }
+          }*/
+		
+        // line.clearRect(0, 0, can.width, can.height);
+        requestAnimationFrame(update);
+        setTimeout(() => {
+		innerw = window.innerWidth;
+		can.width = innerw;
+		
+		innerh = window.innerHeight;
+		can.height = innerh;
+          line.clearRect(0, 0, can.width, can.height)
+        }, 10)
+      }
+      update();
+
+
+      let an = (e) => {
+        points.push(new point(e.clientX, e.clientY))
+      }
+    </script>
+  </canvas>
+</body>
+</html>
