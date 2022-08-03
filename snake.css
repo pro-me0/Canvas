@@ -1,0 +1,8 @@
+body{
+    background-color: black;
+    text-align: center;
+    overflow: hidden;
+}
+canvas{
+    border: .2em dashed gray;
+}
