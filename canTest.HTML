@@ -1,0 +1,207 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <link rel="icon" href="dot.png" />
+        <link rel="" href="" title="" type="" />
+        <meta http-equiv="content-type" content="text/html; charset=utf-8" />
+       <meta name="viewport" content="width=device-width, initial-scale=1">
+        <style>
+            body{
+                background-color: gray;
+                margin: 0;
+            }
+            canvas{
+                background-color: black;
+            }
+            button{
+                background-color: goldenrod;
+                border-radius: 1em;
+          position: fixed;
+          border-width: 0;
+          padding: 1em;
+
+          right: 3vw;
+          top: 3vh;
+      }
+            input{
+                background-color: goldenrod;
+                border-radius: 1em;
+          position: fixed;
+          border-width: 0;
+          padding: 1em;
+
+          left: 3vw;
+          top: 3vh;
+      }
+        </style>
+        <title> 🌌 </title>
+    </head>
+    <body onclick="an(event)" id="bd">
+        <button onclick="rst(event)">ReseT</button>
+    <input type="button" name="" id="" value="PausE" onclick="pas(event)" />
+        <canvas id="cn">
+            <script type="text/javascript" charset="utf-8">
+                let bd = document.getElementById(""),
+                cn=document.getElementById("cn"),
+                c = cn.getContext("2d"),
+                w=window.innerWidth,
+                px=0,
+                truth=true;
+                h = window.innerHeight,
+                r=30;
+                
+                cn.width=w;
+                cn.height=h;
+                
+                let circles=new Array;
+                
+                class circle{
+                    constructor(x, y){
+                        this.x = x;
+                        this.y = y;
+                        this.dx = Math.random() * 5;
+                        this.dy = Math.random() * 5;
+                        
+          this.dx *= Math.floor(Math.random() * 2) == 1 ? 1: -1;
+          this.dy*= Math.floor(Math.random() * 2) == 1 ? 1: -1;
+                        
+                        this.r= Math.random() * 5 + 1;
+                    }
+                    
+                    carv = () => {
+                // c.strokeStyle="goldenrod";
+                c.fillStyle="rgba(230, 149, 0, .38)";
+                        c.beginPath();
+                        c.arc(this.x, this.y, this.r, 0, 2 * Math.PI);
+                        c.fill();
+                        c.closePath();
+                    }
+                    
+                }
+           /* for(let i=0; i < 3; i++){
+                circles.push(new circle(Math.random() * w, Math.random() * h))
+                circles[i].carv()
+            }
+            */
+            function sc(){
+                w=window.innerWidth;
+                h=height=window.innerHeight;
+                cn.width=w;
+                cn.height=h;
+                
+                setTimeout(()=>{
+                    sc()
+                },10)
+                return
+            };
+            sc()
+            let line = () => {
+                c.beginPath();
+                c.strokeStyle = '#ff774418';
+                for(let i = 0; i < circles.length; i++){
+                    for(let x = 0; x < circles.length; x++){
+                        c.lineTo(circles[i].x, circles[i].y)
+                        c.lineTo(circles[x].x, circles[x].y)
+                    }
+                }
+				// c.closePath();
+				c.stroke();
+                    
+            }
+                line()
+                
+                function animate(){
+                    if(truth){
+                    c.clearRect(0, 0, cn.width, cn.height);
+                    
+                    for(let i=0; i < circles.length; i++){
+                        circles[i].x += circles[i].dx;
+                        circles[i].y += circles[i].dy;
+                        
+                        circles[i].carv()
+                    }
+                    
+                    line();
+
+                    requestAnimationFrame(animate);
+                    }
+                    
+                }
+                animate()
+                
+                let check = () => {
+                    
+                    for(let i = 0; i < circles.length; i++){
+                        
+                        
+                        if(circles[i].x + circles[i].r >= cn.width){
+                            circles[i].x = cn.width - circles[i].r;
+                           circles[i].dx *= -1;
+                        }
+                        if(circles[i].x <= px + circles[i].r){
+                            circles[i].x = px + circles[i].r;
+                           circles[i].dx *= -1;
+                        }
+                        
+                        if(circles[i].y <= px + circles[i].r){
+                            circles[i].y = px + circles[i].r;
+                           circles[i].dy *= -1
+                        }
+                        if(circles[i].y >= cn.height){
+                            circles[i].y = cn.height ;
+                           circles[i].dy *= -1
+                        }
+                        
+                        
+                    }
+                    
+                    requestAnimationFrame(check)
+                }
+                check()
+                
+                let an = (e) => {
+                    circles.push(new circle(
+                        e.clientX, e.clientY
+                        ))
+                }
+                
+
+      function rst(e){
+          e.stopPropagation();
+          circles=new Array
+      }
+      function pas(e){
+          e.stopPropagation();
+          if(truth == true) {
+              truth = false;
+                    for(let i=0; i < circles.length; i++){
+                        circles[i].x += circles[i].dx;
+                        circles[i].y += circles[i].dy;
+                        
+                        circles[i].carv()
+                    }
+              document.querySelector("input").value = "PauseD"
+              animate()
+          }else{
+              truth = true
+              document.querySelector("input").value = "PausE"
+              animate()
+          }
+      }
+	  function save () {
+	  let filename = prompt('File Name');
+      let element = document.createElement('a');
+	  if(filename != null) {
+        let uri = cn.toDataURL('image/png', 1);
+        element.setAttribute('href', uri);
+        element.setAttribute('download', 'wire');
+        element.style.display = 'none';
+        document.body.appendChild(element);
+        element.click();
+    }
+    document.body.removeChild(element); 
+}
+            </script>
+        </canvas>
+    </body>
+</html>
