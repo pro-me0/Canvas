@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta http-equiv="content-type" content="text/html; charset=utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <title>RANDOM POSITIONING</title>
+    <script type="text/javascript" src='rand.js'>
+    </script>
+    <link rel="stylesheet" href="rand.css" type="text/css" media="all"/>
+
+</head>
+
+<body onload="all()" onclick="add()">
+   <audio id='cat' preload="auto" src="./aud/catch.mp3"></audio>
+   <audio id='beep' preload="auto" src="./aud/beep.mp3"></audio>
+   
+    <div  id="body">
+        <div id="cot">
+            Caught: 0;
+        </div>
+        <div id="rem">
+            Remaining:
+        </div>
+    </div>
+    
+    <div class="prompt">
+        <b>Enter the number of boxes you like below</b>
+        <br>
+        <br>
+        <div id="con">
+        <input class='input' max=20 min=1 placeholder='0 to 20' type="number" req>
+        <input type="button" id='silly' value='Quit' onclick="inn()">
+        <input type="button" id='sm' onclick="dull()" value="Play">
+    </div>
+        <!-- <button for='form' onclick="validate()" type="submit">Play</button> -->
+    </div>
+
+    
+</body>
+</html>
