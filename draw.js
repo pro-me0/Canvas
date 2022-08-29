@@ -13,6 +13,7 @@ line = can.getContext("2d"),
 /*  logX = new Array, logY = new Array, */ray = new Array,
 rayc = new Array,
 w,
+
 change = () => {
     w = rc.value;
     line.lineWidth = w;
