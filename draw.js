@@ -128,7 +128,7 @@ function bg(){
         }
     if(cc.title == 'Light mood'){
         line.clearRect(0, 0, window.innerWidth, window.innerHeight)
-        cc.src = 'img/dark.png';
+        cc.src = 'img/Dark.png';
     cc.title = 'Dark mood';
         can.style.backgroundColor = 'wheat';
         line.strokeStyle = 'black';
