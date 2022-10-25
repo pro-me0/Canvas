@@ -345,3 +345,5 @@ let chh = (x) => {
         }, 300)
     };
 };
+
+window.addEventListener('load', document.body.style.opacity = '1')
