@@ -1,11 +1,12 @@
 *{
-    transition: ;
+    transition: .3s;
 }
 
 body{
     margin: 0;
     overflow: hidden;
     display: block;
+    opacity: 0;
 }
 
 canvas{
