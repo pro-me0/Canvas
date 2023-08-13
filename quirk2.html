@@ -12,15 +12,27 @@
         margin: 0;
         overflow: hidden;
       }
+      button{
+        position: fixed;
+        padding: 1em;
+        bottom: 0;
+        right: 0;
+        background-color: grey;
+        font-size: 2em;
+        color: wheat;
+        border-radius: 2em;
+      }
   </style>
 </head>
-<body onclick="an(event);">
-  <canvas id="canvas">
+<body>
+  <button onclick="points.pop()" ondblclick="(event) => {event.stopPropagation();}">
+    redo 
+  </button>
+  <canvas id="canvas" onclick="an(event);">
     <script>
       let can = document.getElementById("canvas"),
-      innerw, innerh, px=30;
-      innerw = window.innerWidth;
-      innerh = window.innerHeight;
+      innerw = window.innerWidth, innerh = window.innerHeight, px=innerw*.35, py = px
+;
 
       can.width = innerw;
       can.height = innerh;
@@ -29,8 +41,17 @@
 
       class point{
         constructor(x, y){
+          this.direction = ["-", "+", "-", "+", "-", "+", "-"];
+          
+          this.dir = this.direction[(Math.random() * this.direction.length).toFixed()]
+          console.log(this.dir)
+          
           this.ry = Number((Math.random() * 6).toFixed(1));
           this.rx = Number((Math.random() * 6).toFixed(1));
+          
+          this.ry = Number(this.dir + this.ry)
+          this.rx = Number(this.dir + this.rx)
+
           this.x = x;
           this.y = y;
         }
@@ -84,17 +105,17 @@
             points[i].x = innerw - px;
             points[i].rx = points[i].rx * -1;
           }
-          if(points[i].x <= px*.5){
-            points[i].x = px*.5;
+          if(points[i].x <= px){
+            points[i].x = px;
             points[i].rx = points[i].rx * -1;
           }
 
-          if(points[i].y >= innerh-px){
-            points[i].y = innerh-px;
+          if(points[i].y >= innerh-py){
+            points[i].y = innerh-py;
             points[i].ry = points[i].ry * -1;
           }
-          if(points[i].y <= px){
-            points[i].y = px
+          if(points[i].y <= py){
+            points[i].y = py
             points[i].ry = points[i].ry * -1;
           }
           // if(points[i].x <= innerw/2){
