@@ -25,19 +25,21 @@
   </style>
 </head>
 <body>
+	<input type="range" id="rate" min="0" max="20" title="speed range" style="position: fixed;" oninput="dRate()">
   <button onclick="points.pop()" ondblclick="(event) => {event.stopPropagation();}">
     redo 
   </button>
   <canvas id="canvas" onclick="an(event);">
     <script>
       let can = document.getElementById("canvas"),
-      innerw = window.innerWidth, innerh = window.innerHeight, px=innerw*.35, py = px
-;
+      innerw = window.innerWidth, innerh = window.innerHeight, px=innerw*.35, py = px, rate = Number(document.getElementById("rate").value),
 
+      dRate = () => { rate = Number(document.getElementById("rate").value) }
+      line = can.getContext("2d");
       can.width = innerw;
       can.height = innerh;
 
-      let line = can.getContext("2d");
+    
 
       class point{
         constructor(x, y){
@@ -46,8 +48,8 @@
           this.dir = this.direction[(Math.random() * this.direction.length).toFixed()]
           console.log(this.dir)
           
-          this.ry = Number((Math.random() * 6).toFixed(1));
-          this.rx = Number((Math.random() * 6).toFixed(1));
+          this.ry = Number((Math.random() * rate).toFixed(1));
+          this.rx = Number((Math.random() * rate).toFixed(1));
           
           this.ry = Number(this.dir + this.ry)
           this.rx = Number(this.dir + this.rx)
