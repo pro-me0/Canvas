@@ -9,7 +9,7 @@ app.get('/', (req, res) => {
 	res.sendFile('draw.html', {root: './'});
 });
 
-app.listen(app.get('port'), () => {
+app.listen(app.get('port'), '0.0.0.0' , () => {
 	console.clear();
 	console.log(`server started @ http://localhost${app.get('port')}`)
 })
